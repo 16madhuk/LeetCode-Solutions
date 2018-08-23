@@ -1,0 +1,29 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        num = []
+        num.append(0)
+        self.helper(s, 0, num)
+        return num[0]
+    
+    def lenRepeating(self, string): 
+        letters = set()
+        index = 0 
+        for ch in string: 
+            if ch in letters: 
+                return index 
+            index = index + 1
+            letters.add(ch)
+        return index 
+    
+    def helper (self, s, startPos, maxLen):
+        if (startPos == (len(s))):
+            return maxLen
+        elif self.lenRepeating(s[startPos:]) > maxLen[0]:
+            maxLen[0] = self.lenRepeating(s[startPos:])
+            self.helper(s, startPos+1, maxLen)
+        else:
+            self.helper(s, startPos+1, maxLen)
