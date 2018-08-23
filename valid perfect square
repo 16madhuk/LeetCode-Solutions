@@ -1,0 +1,18 @@
+class Solution(object):
+    def binSearch(self, num):
+        min = 0 
+        max = num/2 + 1
+        while True:
+            if max < min: 
+                return False
+            m = (min + max)/2
+            temp = m*m 
+            if (temp == num):
+                return True
+            elif (temp > num):
+                max = m -1 
+            else: 
+                min = m + 1
+    def isPerfectSquare(self, num):
+        return self.binSearch(num)
+        
