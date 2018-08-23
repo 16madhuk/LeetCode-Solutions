@@ -1,0 +1,29 @@
+class Solution(object):
+    def isSubsequence(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        retVal = False
+        substrIndex = 0
+        index = 0 
+        sLen = len(s)
+        tLen = len(t)
+        if (tLen < sLen):
+            return False
+        if (sLen == 0):
+            return True
+        while (index < tLen):
+            ch = s[substrIndex]
+            if t[index] != ch: 
+                index += 1 
+            else:
+                substrIndex += 1
+                index += 1
+                if (substrIndex >= sLen):
+                    print (substrIndex, sLen)
+                    return True
+        return False
+            
+            
