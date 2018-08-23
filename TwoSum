@@ -1,0 +1,10 @@
+#naive solution -- better would be a hashmap implementation
+class Solution(object):
+    def twoSum(self, nums, target):
+        #iterate through array
+        for i in range(0, len(nums)):
+            for x in range(i+1, len(nums)):
+                firstNum = nums[i]
+                secondNum = nums[x]
+                if (firstNum + secondNum == target):
+                    return [i, x]
