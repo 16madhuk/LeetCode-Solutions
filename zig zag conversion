@@ -1,0 +1,25 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        strings = [""] * numRows
+        curRow = 0
+        index = 0
+        while (index < len(s)):
+            while (curRow < (numRows) and index < len(s)):
+                strings[curRow] += s[index]                
+                index = index + 1
+                curRow = curRow + 1
+            #reached bottom of row, so have to step up
+            curRow = curRow -2
+            while (curRow > 0 and index < len(s)):
+                strings[curRow] += s[index]
+                index = index + 1
+                curRow = curRow -1
+        res = ''
+        for i in strings: 
+            res += i
+        return str(res)
