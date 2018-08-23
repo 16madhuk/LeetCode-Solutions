@@ -1,0 +1,42 @@
+class Solution(object):
+               
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        start1 = 0
+        end1 = 0
+        n = len(s)
+        maxlen = 1
+        data = [[False] * n for i in range(n)]
+        for i in range(0, n):
+            data[i][i] = True
+        start = 0 
+        i = 0
+       
+        #for two letters identical
+        while i < n-1:
+            if (s[i] == s[i+1]):
+                data[i][i+1] = True
+                start1 = i 
+                end1 = i+1
+                maxlen = 2
+            i = i +1
+            
+        length = 3
+        while (length <= n):
+            #starting index 
+            for i in range(0, n - length +1):
+                end = i + length -1
+                if (data[i+1][end-1] == True):
+                    if (s[i] == s[end]):
+                        data[i][end] = True
+                        if (length > maxlen):
+                            maxlen = length
+                            start1 = i
+                            end1 = end
+            length = length + 1
+        return s[start1: end1+1]
+                            
+                    
