@@ -1,0 +1,63 @@
+class Solution(object):
+    import math
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        neg = [False]
+        numSigns = [] 
+        nums = []
+        nothin = False
+        st = str.strip()
+        index = 0 
+        for i in st: 
+            tmp = self.convertChar(i, neg, numSigns, index)
+            print (tmp)
+            if (index == 0 and (tmp is None or tmp == 'stopdec')):
+                return 0
+            if i != st[0] and tmp == '*':
+                break
+            if (tmp == 'stopdec' or tmp is None):
+                break            
+            if (tmp is not None):
+                if (tmp != '*'):
+                    nums.append(tmp)
+            index = index + 1
+
+        sz = len(nums) -1
+        res = 0 
+        for i in range(0, len(nums)):
+            res = res + (nums[i] * (math.pow(10, sz)))
+            sz = sz-1
+        ret = 0
+        if (neg[0]):
+            ret= -1*(int(res))
+        else:
+            ret= int(res)
+        if (ret > ((1 << 31)-1) or ret < -(1<<31)):
+            if neg[0]:
+                return -(1<<31)
+            return (1<<31)-1
+        return ret
+        
+    def convertChar(self, s, sign, signs, index):
+        if (s == '-'):
+            if index!=0: 
+                return None
+            sign[0] = True
+            signs.append('-')
+            return '*'
+        elif (s == '+'):
+            if index != 0:
+                return None
+            sign[0] = False            
+            signs.append('+')
+            return '*'
+        if (s == '.'):
+            return 'stopdec'
+        val = ord(s)
+        if ord(s) >= ord('0') and ord(s) <= ord('9'):
+            return ord(s) - ord('0')
+        return None
+       
