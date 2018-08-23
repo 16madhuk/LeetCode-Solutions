@@ -1,0 +1,19 @@
+class Solution(object):
+    def letterCaseHelper(self, S, currentString, index, perms):
+        if (index == len(S)):
+            print(currentString)
+            perms.append(currentString)
+            return
+        else:
+            if (S[index].isalpha()):
+                self.letterCaseHelper(S, currentString + S[index].lower(), index+1, perms)
+                self.letterCaseHelper(S, currentString + S[index].upper(), index+1, perms)
+
+            else:
+                self.letterCaseHelper(S, currentString + S[index], index+1, perms)
+
+    def letterCasePermutation(self, S):
+        perms = []
+        self.letterCaseHelper(S, "", 0, perms)
+        return perms 
+            
