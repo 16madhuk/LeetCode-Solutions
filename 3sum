@@ -1,0 +1,33 @@
+
+
+
+
+
+
+Bad Solution: 
+class Solution(object):
+    from itertools import permutations
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        ret = []
+        for i in range(0, len(nums)):
+            for z in range(i +1 , len(nums)):
+                for x in range(z +1, len(nums)):
+                    one = nums[i]
+                    two = nums[z]
+                    three = nums[x]
+                    if (((one + two + three) == 0)):
+                        tmp = [one, two, three]
+                        tempPerms = itertools.permutations(tmp)
+                        already = False
+                        for x in tempPerms: 
+                            x = list(x)
+                            if ((x in ret)):
+                                already = True
+                        if already == False:
+                            ret.append(tmp)
+        return ret
+        
