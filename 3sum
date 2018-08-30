@@ -32,6 +32,7 @@ class Solution(object):
                         if (not len(hashMap[firstVal]) >= 3):
                             continue
                     tmp = [firstVal, secondVal, targetVal]
+                    tmp = sorted(tmp)
                     if (tmp not in soFar):
                         soFar.append(tmp)
         return soFar        
