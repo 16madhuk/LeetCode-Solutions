@@ -1,0 +1,30 @@
+class LogSystem(object):
+
+    def __init__(self):
+        self.logs = []
+        self.gran = {'Year': 4, 'Month': 7, 'Day': 10, 'Hour': 13, 'Minute': 16, 'Second': 19}
+
+
+    def put(self, id, timestamp):
+        """
+        :type id: int
+        :type timestamp: str
+        :rtype: void
+        """
+        id4 = id
+        self.logs.append((id4, timestamp))
+
+
+    def retrieve(self, s, e, gra):
+        """
+        :type s: str
+        :type e: str
+        :type gra: str
+        :rtype: List[int]
+        """
+        i = self.gran[gra]
+        begin = s[:i]
+        end = e[:i]
+        x = sorted(id4 for id4, timestamp in self.logs if begin <= timestamp[:i] <= end)
+        return x
+
