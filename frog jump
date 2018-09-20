@@ -20,6 +20,7 @@
 
 
 #Recursion : O(3^n)
+#time limit exceeded on leetcode
 class Solution:
     def canCross(self, stones):
         """
