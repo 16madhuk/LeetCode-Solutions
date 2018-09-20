@@ -1,0 +1,47 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Recursion : O(3^n)
+class Solution:
+    def canCross(self, stones):
+        """
+        :type stones: List[int]
+        :rtype: bool
+        """
+        retVal = self.jumpHelper(stones, stones[-1], 1, 1)
+        return retVal
+    
+    def jumpHelper(self, stones, target, curSpeed, curStone):
+        if (not (curStone in stones)):
+            return False
+        elif (curStone > target):
+            return False
+        elif (curSpeed <= 0):
+            return False
+        if (curStone == target):
+            print("here")
+            return True
+        
+        if (self.jumpHelper(stones, target, curSpeed-1, curStone+(curSpeed-1)) or self.jumpHelper(stones, target, curSpeed, curStone + curSpeed) or self.jumpHelper(stones,target, curSpeed+1, curStone+curSpeed+1)):
+            print ('here, FOUND')
+            return True
+        else: 
+            return False
